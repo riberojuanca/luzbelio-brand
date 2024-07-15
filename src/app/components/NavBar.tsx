@@ -9,7 +9,7 @@ const NavBar = () => {
   const router = useRouter();
 
   return (
-    <header className="bg-blue-800 text-white flex items-center justify-between p-4  h-16 w-full gap-4  fixed bg-libertad-200">
+    <header className="bg-blue-800  flex items-center justify-between p-4  h-16 w-full gap-4  fixed bg-libertad-200">
       {/* <h1 className="text-amber-400 p-1 font-extrabold text-2xl">Luzbelio</h1> */}
       <Image
         width={500}
@@ -22,8 +22,8 @@ const NavBar = () => {
       <div className="items-center justify-between hidden sm:flex">
         <MenuList />
       </div>
-      <div className="flex sm:hidden">Items Menu Mobile</div>
-      <nav className=" p-1 flex items-center justify-between text-base">
+      <div className=" flex sm:hidden">Items Menu Mobile</div>
+      <nav className="text-white p-1 flex items-center justify-between text-base">
         <ul className="flex items-center justify-between gap-4 sm:gap-7">
           <li className="cursor-pointer" onClick={() => router.push("/cart")}>
             <ShoppingCart size={20} />
