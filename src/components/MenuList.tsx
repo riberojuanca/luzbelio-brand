@@ -14,25 +14,6 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Remeras",
-    href: "/category/Tshirts",
-    description: "Minimalistas, elegantes; sutiles.",
-  },
-  {
-    title: "Pantalones",
-    href: "/category/Pants",
-    description: "Correctos y cómodos, llenos de frescura.",
-  },
-  {
-    title: "Gorras",
-    href: "/Category/Caps",
-    description:
-      "¿Acaso deseas algo distintivo que le de un gran estilo sin exagerar?, !listo!.",
-  },
-];
-
 const MenuList = () => {
   return (
     <NavigationMenu>
@@ -57,15 +38,15 @@ const MenuList = () => {
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
+              <ListItem href="/shop" title="Tienda">
+                Accede a toda tu información, pedidos y más.
               </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
+              <ListItem href="/offers" title="Descuentos">
+                Sección dedicada a promociones y descuentos especiales.
               </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
+              {/* <ListItem href="/docs/primitives/typography" title="Typography">
                 Styles for headings, paragraphs, lists...etc
-              </ListItem>
+              </ListItem> */}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -86,9 +67,9 @@ const MenuList = () => {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+          <Link href="/accesorios" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
+              Accesorios
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
@@ -96,6 +77,26 @@ const MenuList = () => {
     </NavigationMenu>
   );
 };
+export default MenuList;
+
+const components: { title: string; href: string; description: string }[] = [
+  {
+    title: "Remeras",
+    href: "/category/Tshirts",
+    description: "Minimalistas, elegantes; sutiles.",
+  },
+  {
+    title: "Pantalones",
+    href: "/category/Pants",
+    description: "Correctos y cómodos, llenos de frescura.",
+  },
+  {
+    title: "Gorras",
+    href: "/category/Caps",
+    description:
+      "¿Acaso deseas algo distintivo que le de un gran estilo sin exagerar?, !listo!.",
+  },
+];
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
@@ -122,5 +123,3 @@ const ListItem = React.forwardRef<
   );
 });
 ListItem.displayName = "ListItem";
-
-export default MenuList;
