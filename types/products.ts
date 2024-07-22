@@ -23,7 +23,7 @@ export type ProductType = {
     };
     isFeatured: string;
     price: number;
-    producName: string;
+    productName: string;
     size: string;
     slug: string;
   };
