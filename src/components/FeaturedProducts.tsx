@@ -29,8 +29,8 @@ const FeaturedProducts = () => {
                   key={id}
                   className=" md:basis-1/2 lg:basis-1/3 group"
                 >
-                  <div className="">
-                    <Card className="border border-gray-200 shadow-none p-2 flex flex-col gap-2">
+                  <div className="py-2">
+                    <Card className="shadow-none p-2 flex flex-col gap-2">
                       <CardContent className="relative flex items-center justify-center p-0">
                         <img
                           className="rounded-lg"
@@ -38,7 +38,7 @@ const FeaturedProducts = () => {
                           alt="Image featured"
                         />
                         <div className="absolute w-full transition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
-                          <div className="flex justify gap-x-4">
+                          <div className="flex justify-center items-center gap-x-4">
                             <IconButton
                               onClick={() => router.push(`product/${slug}`)}
                               icon={<Expand size={20} />}
@@ -52,7 +52,7 @@ const FeaturedProducts = () => {
                           </div>
                         </div>
                       </CardContent>
-                      <div className="flex justify-between gap-4">
+                      <div className="flex justify-between">
                         <h3 className="text-base font-semibold">
                           {productName}
                         </h3>
