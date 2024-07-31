@@ -61,9 +61,10 @@
 
 body {
   scroll-behavior: smooth;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
-* {
-  border: none;
+img {
+  width: 100%;
+  height: auto;
 }
