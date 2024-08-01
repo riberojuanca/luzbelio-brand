@@ -12,7 +12,7 @@ export const useGetCategories = () => {
       try {
         const res = await fetch(url);
         const json = await res.json();
-        setResult(json);
+        setResult(json.data);
         setLoading(false);
       } catch (error: any) {
         setError(error);

@@ -9,7 +9,7 @@ export type CategoriesType = {
         attributes: {
           url: string;
         };
-      }[];
+      };
     };
   };
 };
