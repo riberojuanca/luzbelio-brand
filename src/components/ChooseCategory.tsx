@@ -8,13 +8,15 @@ import Image from "next/image";
 const ChooseCategory = () => {
   const { result, loading }: ResponseType = useGetCategories();
 
+  const categories = Array.isArray(result) ? result : [];
+
   return (
     <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-24">
       <h3 className="px-2 pb-4 text-xl sm:pb-8">Elige tu categoría favorita</h3>
       <div className="grid gap-5 sm:grid-cols-3">
         {!loading &&
-          result !== undefined &&
-          result.map((category: CategoriesType) => (
+          categories !== undefined &&
+          categories.map((category: CategoriesType) => (
             <Link
               key={category.id}
               href={`/category/${category.attributes.slug}`}

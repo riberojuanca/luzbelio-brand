@@ -1,6 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-import { useGetFeaturedProducts } from "@/api/useGetFeaturedProducts";
+import { useGetFeaturedProducts } from "@/api/getProducts";
 import { ResponseType } from "../../types/response";
 import {
   Carousel,
@@ -15,10 +14,13 @@ import { Card, CardContent } from "./ui/card";
 import { DollarSign, DollarSignIcon, Expand, ShoppingCart } from "lucide-react";
 import IconButton from "./IconButton";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const FeaturedProducts = () => {
   const { loading, result }: ResponseType = useGetFeaturedProducts();
   const router = useRouter();
+
+  const featuredProducts = Array.isArray(result) ? result : [];
 
   return (
     <div className=" flex flex-col items-center max-w-6xl py-4 mx-auto sm:py-16 sm:px-24">
@@ -28,8 +30,8 @@ const FeaturedProducts = () => {
       <Carousel className="w-screen sm:w-full">
         <CarouselContent className=" sm:w-auto -ml-2 md:-ml-4">
           {loading && <SkeletonSchema grid={3} />}
-          {result !== null &&
-            result.map((product: ProductType) => {
+          {featuredProducts.length > 0 ? (
+            featuredProducts.map((product: ProductType) => {
               const { attributes, id } = product;
               const { slug, images, productName, size, price } = attributes;
               return (
@@ -40,10 +42,12 @@ const FeaturedProducts = () => {
                   <div className="py-2">
                     <Card className="border-none shadow-none p-2 flex flex-col gap-2">
                       <CardContent className="relative flex items-center justify-center p-0">
-                        <img
+                        <Image
                           className="rounded-lg max object-cover h-40"
                           src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${images.data[0].attributes.url}`}
                           alt="Image featured"
+                          width={400}
+                          height={600}
                         />
                         <div className="absolute w-full px-6 transition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
                           <div className="flex justify-center items-center gap-x-4">
@@ -72,7 +76,10 @@ const FeaturedProducts = () => {
                   </div>
                 </CarouselItem>
               );
-            })}
+            })
+          ) : (
+            <p>No hay destacados para mostrar</p>
+          )}
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext className="hidden sm:flex" />

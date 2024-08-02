@@ -1,25 +1,13 @@
-import { useEffect, useState } from "react";
+import { useFetch } from "@/useFetch";
 
 export const useGetCategories = () => {
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/categories?populate=*`;
+  const { loading, result, error } = useFetch(url);
+  return { loading, result, error };
+};
 
-  const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await fetch(url);
-        const json = await res.json();
-        setResult(json.data);
-        setLoading(false);
-      } catch (error: any) {
-        setError(error);
-        setLoading(false);
-      }
-    })();
-  }, [url]);
-
+export const useGetFeaturedProducts = () => {
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?filters[isFeatured][$eq]=true&populate=*`;
+  const { loading, result, error } = useFetch(url);
   return { loading, result, error };
 };
