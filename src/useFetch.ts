@@ -1,8 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
+import { ResultFilterTypes } from "../types/filters";
 
 export default function useFetch(url: string) {
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<ResultFilterTypes | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
