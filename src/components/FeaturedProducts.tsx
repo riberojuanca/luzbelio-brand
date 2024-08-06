@@ -1,5 +1,4 @@
 "use client";
-import { useGetFeaturedProducts } from "@/api/getProducts";
 import { ResponseType } from "../../types/response";
 import {
   Carousel,
@@ -15,6 +14,7 @@ import { DollarSign, DollarSignIcon, Expand, ShoppingCart } from "lucide-react";
 import IconButton from "./IconButton";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useGetFeaturedProducts } from "@/api/getProducts";
 
 const FeaturedProducts = () => {
   const { loading, result }: ResponseType = useGetFeaturedProducts();

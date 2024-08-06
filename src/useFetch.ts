@@ -1,6 +1,7 @@
+"use client";
 import { useState, useEffect } from "react";
 
-export function useFetch(url) {
+export default function useFetch(url: string) {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
