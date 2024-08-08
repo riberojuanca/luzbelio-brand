@@ -9,6 +9,7 @@ import Image from "next/image";
 import IconButton from "@/components/IconButton";
 import { Expand, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { formatPrice } from "@/lib/formatPrice";
 
 type ProductCardProps = {
   product: ProductType;
@@ -22,13 +23,13 @@ const ProductCard = (props: ProductCardProps) => {
   return (
     <Link
       href={`/product/${product.attributes.slug}`}
-      className="relative p-2 transition-all duration-100 rounded-lg hover:shadow-md"
+      className="relative p-2 transition-all duration-100 w-full rounded-xl hover:shadow-md flex flex-col justify-start items-center"
     >
-      <div className="absolute flex items-center justify-between gap-16 px-2 z-[1] top-4">
-        <p className="px-2 py-1 text-xs text-white bg-black rounded-full dark:bg-white dark:text-black w-fit">
+      <div className="absolute flex items-center justify-between z-[1] top-4 left-4 gap-1">
+        <p className="p-2 text-xs text-white bg-black rounded-md dark:bg-white dark:text-black w-fit">
           {product.attributes.size}
         </p>
-        <p className="px-2 py-1 text-xs text-white bg-yellow-600 rounded-full w-fit">
+        <p className="p-2 text-xs text-white bg-luzbelio-500 rounded-md w-fit">
           {product.attributes.color}
         </p>
       </div>
@@ -40,16 +41,16 @@ const ProductCard = (props: ProductCardProps) => {
       >
         <CarouselContent>
           {product.attributes.images.data.map((image) => (
-            <CarouselItem key={image.id} className="group">
+            <CarouselItem key={image.id} className="group flex justify-center">
               <Image
                 src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${image.attributes.url}`}
                 width={600}
                 height={600}
                 alt="Image"
-                className="rounded-xl"
+                className="rounded-xl min-h-40 w-full object-cover"
               />
-              <div className="absoulute w-full px-6 transition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
-                <div className="flex justify-center gap-x-6">
+              <div className="absolute px-6 transition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
+                <div className="flex justify-center gap-x-4">
                   <IconButton
                     onClick={() =>
                       router.push(`/product/${product.attributes.slug}`)
@@ -66,8 +67,10 @@ const ProductCard = (props: ProductCardProps) => {
           ))}
         </CarouselContent>
       </Carousel>
-      <p className="text-2xl text-center">{product.attributes.productName}</p>
-      <p className="font-bold text-center">{product.attributes.price}</p>
+      <p className="text-lg text-center">{product.attributes.productName}</p>
+      <p className="font-bold text-center">
+        {formatPrice(product.attributes.price)}
+      </p>
     </Link>
   );
 };
